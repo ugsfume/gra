@@ -1,0 +1,1018 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="inertial_macros.xacro"/>
+
+    <!-- Colour options for robot -->
+    <material name="blue">
+        <color rgba="0.2 0.2 1.0 1.0"/>
+    </material>
+
+    <material name="black">
+        <color rgba="0.0 0.0 0.0 1.0"/>
+    </material>
+
+    <material name="white">
+        <color rgba="1.0 1.0 1.0 1.0"/>
+    </material>
+
+    <material name="silver">
+        <!--color rgba="0.62 0.62 0.62 0.5"/-->
+        <color rgba="0.78 0.72 0.72 1.0"/>
+    </material>
+
+    <!-- Base link is centre of the 2 drive wheels -->
+    <link name="base_link">
+    
+    </link>
+
+    <!-- Chassis link - box shape with origin just behind the wheels (l/w/h 964.3/231.23/200)>
+    <joint name="chassis_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis"/>
+        <origin xyz="0 0 0.12725"/>
+    </joint>
+
+    <link name="chassis">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <box size="0.96423 0.22 0.2"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <box size="0.96423 0.22 0.2"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_box mass="0.5" x="0.3" y="0.3" z="0.15">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+    -->
+    
+    <!-- Left front wheel link -->
+
+    <joint name="left_front_wheel_joint" type="continuous">
+        <parent link="base_link" />
+        <child link="left_front_wheel"/>
+        <origin xyz="-0.34264 -0.309055 0.12725" rpy="-${pi/2} 0 0"/>
+        <axis xyz="-0.34264 -0.309055 0.12725"/>
+    </joint>
+
+    <link name="left_front_wheel">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.12725" length="0.1144"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>v
+            <geometry>
+                <cylinder radius="0.12725" length="0.1144"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.1144" radius="0.12725">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <!-- To show colour on gazebo -->
+    
+    <gazebo reference="left_front_wheel">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <!-- Left back wheel link -->
+
+    <joint name="left_back_wheel_joint" type="continuous">
+        <parent link="base_link" />
+        <child link="left_back_wheel"/>
+        <origin xyz="0.34264 -0.309055 0.12725" rpy="-${pi/2} 0 0"/>
+        <axis xyz="0.34264 -0.309055 0.12725"/>
+    </joint>
+
+    <link name="left_back_wheel">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.12725" length="0.1144"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.12725" length="0.1144"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.1144" radius="0.12725">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="left_back_wheel">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+     <!-- Right front wheel link -->
+
+    <joint name="right_front_wheel_joint" type="continuous">
+        <parent link="base_link" />
+        <child link="right_front_wheel"/>
+        <origin xyz="-0.34264 0.309055 0.12725" rpy="${pi/2} 0 0"/>
+        <axis xyz="-0.34264 0.309055 0.12725"/>
+    </joint>
+
+    <link name="right_front_wheel">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.12725" length="0.1144"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.12725" length="0.1144"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.1144" radius="0.12725">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="right_front_wheel">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+     <!-- Right back wheel link -->
+
+    <joint name="right_back_wheel_joint" type="continuous">
+        <parent link="base_link" />
+        <child link="right_back_wheel"/>
+        <origin xyz="0.34264 0.309055 0.12725" rpy="${pi/2} 0 0"/>
+        <axis xyz="0.34264 0.309055 0.12725"/>
+    </joint>
+
+    <link name="right_back_wheel">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.12725" length="0.1144"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.12725" length="0.1144"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.1144" radius="0.12725">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="right_back_wheel">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <!-- Left front suspension -->
+
+    <joint name="left_front_suspension_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="left_front_suspension"/>
+        <origin xyz="-0.34264 -0.183735 0.12725" rpy="${pi/2} 0 0"/>
+        <axis xyz="-0.34264 -0.183735 0.12725"/>
+    </joint>
+
+    <link name="left_front_suspension">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.0225" length="0.13624"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.0225" length="0.13624"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.13624" radius="0.0225">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="left_front_suspension">
+        <material>Gazebo/White</material>
+    </gazebo>
+
+    <!-- Left back suspension -->
+
+    <joint name="left_back_suspension_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="left_back_suspension"/>
+        <origin xyz="0.34264 -0.183735 0.12725" rpy="${pi/2} 0 0"/>
+        <axis xyz="0.34264 -0.183735 0.12725"/>
+    </joint>
+
+    <link name="left_back_suspension">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.0225" length="0.13624"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.0255" length="0.13624"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.13624" radius="0.0225">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="left_back_suspension">
+        <material>Gazebo/White</material>
+    </gazebo>
+
+    <!-- Right front suspension -->
+
+    <joint name="right_front_suspension_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="right_front_suspension"/>
+        <origin xyz="-0.34264 0.183735 0.12725" rpy="${pi/2} 0 0"/>
+        <axis xyz="-0.34264 0.183735 0.12725"/>
+    </joint>
+
+    <link name="right_front_suspension">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.0225" length="0.13624"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.0225" length="0.13624"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.13624" radius="0.0255">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="right_front_suspension">
+        <material>Gazebo/White</material>
+    </gazebo>
+
+    <!-- Right back suspension -->
+
+    <joint name="right_back_suspension_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="right_back_suspension"/>
+        <origin xyz="0.34264 0.183735 0.12725" rpy="${pi/2} 0 0"/>
+        <axis xyz="0.34264 0.183735 0.12725"/>
+    </joint>
+
+    <link name="right_back_suspension">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.0225" length="0.13624"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.0225" length="0.13624"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.13624" radius="0.0225">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="right_back_suspension">
+        <material>Gazebo/White</material>
+    </gazebo>
+
+    <!-- Chassis pole top right (l/d 964.3/15.88)-->
+
+    <joint name="chassis_pole_tr_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_pole_tr"/>
+        <origin xyz="0 0.115615 0.26225" rpy="0 ${pi/2} 0"/>
+        <axis xyz="0 0.115615 0.26225"/>
+    </joint>
+
+    <link name="chassis_pole_tr">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.9643"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.9643"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.9643" radius="0.01588">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="chassis_pole_tr">
+        <material>Gazebo/Silver</material>
+    </gazebo>
+
+    <!-- Chassis pole bottom right -->
+
+    <joint name="chassis_pole_br_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_pole_br"/>
+        <origin xyz="0 0.115615 0.06225" rpy="0 ${pi/2} 0"/>
+        <axis xyz="0 0.115615 0.06225"/>
+    </joint>
+
+    <link name="chassis_pole_br">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="00.9643"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.9643"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.9643" radius="0.01588">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="chassis_pole_br">
+        <material>Gazebo/Silver</material>
+    </gazebo>
+            
+    <!-- Chassis pole top left -->
+
+    <joint name="chassis_pole_tl_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_pole_tl"/>
+        <origin xyz="0 -0.115615 0.26225" rpy="0 ${pi/2} 0"/>
+        <axis xyz="0 -0.115615 0.26225"/>
+    </joint>
+
+    <link name="chassis_pole_tl">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.9643"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.9643"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.9643" radius="0.01588">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="chassis_pole_tl">
+        <material>Gazebo/Silver</material>
+    </gazebo>
+
+    <!-- Chassis pole bottom left -->
+
+    <joint name="chassis_pole_bl_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_pole_bl"/>
+        <origin xyz="0 -0.115615 0.06225" rpy="0 ${pi/2} 0"/>
+        <axis xyz="0 -0.115615 0.06225"/>
+    </joint>
+
+    <link name="chassis_pole_bl">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.9643"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.9643"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.9643" radius="0.01588">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="chassis_pole_bl">
+        <material>Gazebo/Silver</material>
+    </gazebo>
+
+    <!-- Chassis pole bottom front -->
+
+    <joint name="chassis_pole_bf_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_pole_bf"/>
+        <origin xyz="-0.48215 0 0.06225" rpy="${pi/2} 0 0"/>
+        <axis xyz="-0.48215 0 0.06225"/>
+    </joint>
+
+    <link name="chassis_pole_bf">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.23123"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.23123"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.23123" radius="0.01588">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="chassis_pole_bf">
+        <material>Gazebo/Silver</material>
+    </gazebo>
+
+    <!-- Chassis pole top front -->
+
+    <joint name="chassis_pole_tf_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_pole_tf"/>
+        <origin xyz="-0.48215 0 0.26226" rpy="${pi/2} 0 0"/>
+        <axis xyz="-0.48215 0 0.26225"/>
+    </joint>
+
+    <link name="chassis_pole_tf">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.23123"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.23123"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.23123" radius="0.01588">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="chassis_pole_tf">
+        <material>Gazebo/Silver</material>
+    </gazebo>
+
+    <!-- Chassis pole bottom back -->
+
+    <joint name="chassis_pole_bb_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_pole_bb"/>
+        <origin xyz="0.48215 0 0.06225" rpy="${pi/2} 0 0"/>
+        <axis xyz="0.48215 0 0.06225"/>
+    </joint>
+
+    <link name="chassis_pole_bb">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.23123"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.23123"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.23123" radius="0.01588">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="chassis_pole_bb">
+        <material>Gazebo/Silver</material>
+    </gazebo>
+
+    <!-- Chassis pole top back -->
+
+    <joint name="chassis_pole_tb_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_pole_tb"/>
+        <origin xyz="0.48215 0 0.26225" rpy="${pi/2} 0 0"/>
+        <axis xyz="0.48215 0 0.26225"/>
+    </joint>
+
+    <link name="chassis_pole_tb">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.23123"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.23123"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.23123" radius="0.01588">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="chassis_pole_tb">
+        <material>Gazebo/Silver</material>
+    </gazebo>
+
+    <!-- Chassis pole vertical front left -->
+
+    <joint name="chassis_pole_vfl_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_pole_vfl"/>
+        <origin xyz="-0.48215 -0.115615 0.16225" rpy="0 0 0"/>
+        <axis xyz="-0.48215 -0.115615 0.16225"/>
+    </joint>
+
+    <link name="chassis_pole_vfl">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.2"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.2"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.2" radius="0.01588">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="chassis_pole_vfl">
+        <material>Gazebo/Silver</material>
+    </gazebo>
+
+    <!-- Chassis pole vertical front right -->
+
+    <joint name="chassis_pole_vfr_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_pole_vfr"/>
+        <origin xyz="-0.48215 0.115615 0.16225" rpy="0 0 0"/>
+        <axis xyz="-0.48215 0.115615 0.16225"/>
+    </joint>
+
+    <link name="chassis_pole_vfr">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.2"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.2"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.2" radius="0.01588">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="chassis_pole_vfr">
+        <material>Gazebo/Silver</material>
+    </gazebo>
+
+    <!-- Chassis pole vertical back left -->
+
+    <joint name="chassis_pole_vbl_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_pole_vbl"/>
+        <origin xyz="0.48215 -0.115615 0.16225" rpy="0 0 0"/>
+        <axis xyz="0.48215 -0.115615 0.16225"/>
+    </joint>
+
+    <link name="chassis_pole_vbl">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.2"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.2"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.2" radius="0.01588">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="chassis_pole_vbl">
+        <material>Gazebo/Silver</material>
+    </gazebo>
+
+    <!-- Chassis pole vertical back right -->
+
+    <joint name="chassis_pole_vbr_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_pole_vbr"/>
+        <origin xyz="0.48215 0.115165 0.16225" rpy="0 0 0"/>
+        <axis xyz="0.48215 0.115615 0.16225"/>
+    </joint>
+
+    <link name="chassis_pole_vbr">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.2"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.2"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.2" radius="0.01588">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="chassis_pole_vbr">
+        <material>Gazebo/Silver</material>
+    </gazebo>
+
+    <!-- Chassis pole top back angle -->
+
+    <joint name="chassis_pole_tba_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_pole_tba"/>
+        <origin xyz="0.36351 0 0.26225" rpy="0 ${pi/2} -0.67648962"/>
+        <axis xyz="0.36351 0 0.26225"/>
+    </joint>
+
+    <link name="chassis_pole_tba">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.34231"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.34231"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.34231" radius="0.01588">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="chassis_pole_tba">
+        <material>Gazebo/Silver</material>
+    </gazebo>
+
+    <!-- Chassis pole top front angle >
+
+    <joint name="chassis_pole_tfa_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_pole_tfa"/>
+        <origin xyz="-0.34234 0 0.26225" rpy="0 ${pi/2} -0.67648962"/>
+        <axis xyz="-0.34234 0 0.26225"/>
+    </joint>
+
+    <link name="chassis_pole_tfa">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.28059"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.28059"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.28059" radius="0.01588">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="chassis_pole_tfa">
+        <material>Gazebo/Silver</material>
+    </gazebo-->
+
+ <!-- Chassis pole top back straight -->
+
+    <joint name="chassis_pole_tbs_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_pole_tbs"/>
+        <origin xyz="0.2237 0 0.26225" rpy="0 ${pi/2} ${pi/2}"/>
+        <axis xyz="0.2237 0 0.26225"/>
+    </joint>
+
+    <link name="chassis_pole_tbs">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.23123"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.23123"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.23123" radius="0.01588">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="chassis_pole_tbs">
+        <material>Gazebo/Silver</material>
+    </gazebo>
+
+    <!-- Chassis pole left back straight -->
+
+    <joint name="chassis_pole_lbs_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_pole_lbs"/>
+        <origin xyz="0.2237 -0.115165 0.16225" rpy="0 0 0"/>
+        <axis xyz="0.2237 -0.115165 0.16225"/>
+    </joint>
+
+    <link name="chassis_pole_lbs">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.23123"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.23123"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.23123" radius="0.01588">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="chassis_pole_lbs">
+        <material>Gazebo/Silver</material>
+    </gazebo>
+
+    <!-- Chassis pole right back straight -->
+
+    <joint name="chassis_pole_rbs_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_pole_rbs"/>
+        <origin xyz="0.2237 0.115165 0.16225" rpy="0 0 0"/>
+        <axis xyz="0.2237 0.115165 0.16225"/>
+    </joint>
+
+    <link name="chassis_pole_rbs">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.23123"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.23123"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.23123" radius="0.01588">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="chassis_pole_rbs">
+        <material>Gazebo/Silver</material>
+    </gazebo>
+
+ <!-- Chassis pole top front straight -->
+
+    <joint name="chassis_pole_tfs_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_pole_tfs"/>
+        <origin xyz="-0.2237 0 0.26225" rpy="0 ${pi/2} ${pi/2}"/>
+        <axis xyz="-0.2237 0 0.26225"/>
+    </joint>
+
+    <link name="chassis_pole_tfs">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.23123"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.23123"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.23123" radius="0.01588">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="chassis_pole_tfs">
+        <material>Gazebo/Silver</material>
+    </gazebo>
+
+    <!-- Chassis pole left front straight -->
+
+    <joint name="chassis_pole_lfs_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_pole_lfs"/>
+        <origin xyz="-0.2237 -0.115165 0.16225" rpy="0 0 0"/>
+        <axis xyz="-0.2237 -0.115165 0.16225"/>
+    </joint>
+
+    <link name="chassis_pole_lfs">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.23123"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.23123"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.23123" radius="0.01588">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="chassis_pole_lfs">
+        <material>Gazebo/Silver</material>
+    </gazebo>
+
+    <!-- Chassis pole right front straight -->
+
+    <joint name="chassis_pole_rfs_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_pole_rfs"/>
+        <origin xyz="-0.2237 0.115165 0.16225" rpy="0 0 0"/>
+        <axis xyz="-0.2237 0.115165 0.16225"/>
+    </joint>
+
+    <link name="chassis_pole_rfs">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.23123"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.23123"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.23123" radius="0.01588">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="chassis_pole_rfs">
+        <material>Gazebo/Silver</material>
+    </gazebo>
+
+ <!-- Chassis pole bottom cross -->
+
+    <joint name="chassis_pole_bc_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_pole_bc"/>
+        <origin xyz="0 0 0.06225" rpy="0 ${pi/2} 0.4569272"/>
+        <axis xyz="0 0 0.06225"/>
+    </joint>
+
+    <link name="chassis_pole_bc">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.45167"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.45167"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.45167" radius="0.01588">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="chassis_pole_bc">
+        <material>Gazebo/Silver</material>
+    </gazebo>
+
+    <!-- Chassis pole bottom cross cross-->
+
+    <joint name="chassis_pole_bcc_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_pole_bcc"/>
+        <origin xyz="0 0 0.06225" rpy="0 ${pi/2} -0.4569272"/>
+        <axis xyz="0 0 0.06225"/>
+    </joint>
+
+    <link name="chassis_pole_bcc">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.45167"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01588" length="0.45167"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.45167" radius="0.01588">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="chassis_pole_bcc">
+        <material>Gazebo/Silver</material>
+    </gazebo>
+
+</robot>

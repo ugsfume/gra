@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<launch>
+
+      <!-- Simulation time -->
+      <param name="/use_sim_time" value="true"/>
+
+      <param name="robot_description" command="$(find xacro)/xacro --inorder $(find car_sim)/description/robot.urdf.xacro"/>
+
+      <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+            <param name="publish_frequency" value="30.0"/>
+      </node>
+
+      <!-- Dont need if got controller -->
+      <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+            <param name="publish_frequency" value="30.0"/>
+      </node>
+
+      <include file="$(find gazebo_ros)/launch/empty_world.launch"/>
+
+      <node name="spawn_car" pkg="gazebo_ros" type="spawn_model"
+            args="-urdf -param robot_description -model car_sim
+                  -gazebo_namespace /gazebo
+                  -x 0.0 -y 0.0 -z 0.0
+                  -R 0.0 -P 0.0 -Y 0.0"/>
+
+      <!-- <node name="controller_spawner" pkg="controller_manager" type="spawner"/> -->
+      
+</launch>
